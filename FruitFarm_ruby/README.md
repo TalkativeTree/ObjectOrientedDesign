@@ -1,3 +1,5 @@
+Example object orient ruby to review before creating a Javascript equivalent.
+
 Commented lines are examples for presentation. 
 
-Example OOR to review before creating a Javascript equivalent.
+GIST OF ALL FILES: https://gist.github.com/TalkativeTree/5732367
