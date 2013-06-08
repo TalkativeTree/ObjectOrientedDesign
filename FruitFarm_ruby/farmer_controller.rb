@@ -1,5 +1,5 @@
 require_relative 'grove'
-require_relative 'tree_and_fruit'
+require_relative 'fruit_trees'
 require_relative 'basket'
 
 class Farmer
