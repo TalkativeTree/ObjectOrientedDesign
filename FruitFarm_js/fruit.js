@@ -40,6 +40,7 @@ function FruitTree (){
 //     var fruit = [];
 //   }
 // }
+
 //-----------------Grove------------------//
 
 function Grove (){
@@ -48,23 +49,21 @@ function Grove (){
 
 //-----------------Farm-------------------//
 
-function Farm () {
+function Farm (kind) {
   this.crops = [],
-  this.
+  this.kind = kind
 }
-var bensFarm = new Farm()
-
 
 //-----------------Farmer-----------------//
 
 function Farmer(name){
   this.name = name;
-  this.farm = [];
+  this.farms = [];
 };
 
-Farmer.prototype.buyFarm = function(type){
-  var newFarm  = new Farm(type);
-  this.farm.push(newFarm);
+Farmer.prototype.buyFarm = function(kind){
+  var newFarm  = new Farm(kind);
+  this.farms.push(newFarm);
 };
 
 var ben = new Farmer("Ben")
@@ -73,6 +72,7 @@ var ben = new Farmer("Ben")
 //-----------------controllers-----------------//
 //$(function){
   ben.buyFarm(new Grove);
+  console.log(ben.farms);
   ben.plant("orange", 3);
   console.log(bensFarm.totalCrop() === 3);
   ben.plant("apple", 4);
