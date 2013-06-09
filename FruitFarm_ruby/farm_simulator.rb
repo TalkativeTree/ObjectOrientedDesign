@@ -1,3 +1,9 @@
+require "awesome_print"
+require_relative 'grove'
+require_relative 'fruit_trees'
+require_relative 'basket'
+require_relative 'farmer'
+
 def set_up_farm(farmer)
   farmer.buy_farm(Grove)
   farmer.plant(OrangeTree, 3)
@@ -31,3 +37,9 @@ def display_harvest(farmer, variety)
     end
   end
 end
+
+ben = Farmer.new
+set_up_farm(ben)
+tend_farm(ben, 10)
+variety = harvest_season(ben)
+display_harvest(ben,variety)
