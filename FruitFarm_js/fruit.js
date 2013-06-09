@@ -59,7 +59,14 @@ var bensFarm = new Farm()
 
 function Farmer(name){
   this.name = name;
-}
+  this.farm = [];
+};
+
+Farmer.prototype.buyFarm = function(type){
+  var newFarm  = new Farm(type);
+  this.farm.push(newFarm);
+};
+
 var ben = new Farmer("Ben")
 
 
