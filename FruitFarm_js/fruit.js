@@ -190,7 +190,7 @@ var harvest = {
     
   },
 };
-console.log(harvest);
+console.log(harvest.bounty === ["orange", "orange", "orange", "apple", "apple", "apple", "apple", "pear", "pear", "pear", "pear"]);
 //  };
 
 
