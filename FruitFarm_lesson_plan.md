@@ -4,3 +4,8 @@
 
 <h4> Study materials </h4>
 <h4> Lesson Plan </h4>
+
+- Constructors  
+- Prototypes  
+- Object Literals
+- Inheritance
