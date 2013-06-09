@@ -9,6 +9,17 @@
 // }
 
 //Contructor & prototype
+// //Object Literal
+// var fruit = {
+//   taste: "delicious",
+//   status: "uneaten",
+
+//   rot: function(){
+//     this.status = "spoiled"
+//   },//make sure to remember your ','s
+// }
+
+//Contructor & prototype
 function Fruit (name){
   this.name = name;
   this.status = "fresh";
@@ -27,11 +38,21 @@ var orange = new Fruit ("pear");
 
 var stagesOfLife = {
   stage: ["seed", "sapling", "teen", "mature"]
-}
+};
 
 function FruitTree (){
 
-}
+};
+
+function appleTree (){
+  this.fruit = "apple"
+};
+function pearTree (){
+  this.fruit = "pear"
+};
+function orangeTree (){
+  this.fruit = "orange"
+};
 
 
 //-----------------Grove-------------------//
@@ -48,19 +69,18 @@ Grove.prototype = new Farm();
 //-----------------Farm-------------------//
 
 function Farm (kind) {
-  this.crops = [],
-  this.kind = kind
+  this.crops = [];
+  this.kind = kind;
 }
 
-Farm.prototype.add = function(newCrop) { 
-  this.crops.push(newCrop); 
+Farm.prototype.add = function(newCrop) {
+  this.crops.push(newCrop);
 }
 
 Farm.prototype.totalCrops = function(){
 //  console.log(this.crops.length);
 //  this.crops.length;
-  var total = this.crops.length;
-  return total;
+  return this.crops.length;
 }
 
 Farm.prototype.grow = function(){
@@ -74,12 +94,12 @@ for(var i = 0; i < this.totalCrops; i++){
 
 Farm.prototype.yieldBounty = function(){
   var bounty = [];
-  for(i=0;i < this.crops.length;i++){
-    bounty.push(this.crops[i].kind);
+  for(var i=0;i < this.crops.length;i++){
+    bounty.push(this.crops[i].fruit);
   }
 //  console.log(bounty);
   return bounty;
-  
+
 }
 //-----------------Farmer-----------------//
 //-----------------Farmer-----------------//
@@ -93,17 +113,14 @@ function Farmer(name){
 
 
 Farmer.prototype.buyFarm = function(kind){
-  var newFarm  = new Farm(kind);
-  this.farm = (newFarm);
+  this.farm  = new Farm(kind);
 };
 
 
-Farmer.prototype.plant = function(plant,kind,number){
+Farmer.prototype.plant = function(plant,number){
   for(var i = 0;i < number;i++){
-    var newCrop = plant;
-    newCrop.kind = kind;
 //  console.log(this.farm);
-    this.farm.add(newCrop);
+    this.farm.add(plant);
 //  console.log(this.farm);
   };
 };
@@ -111,8 +128,7 @@ Farmer.prototype.plant = function(plant,kind,number){
 Farmer.prototype.countCrop = function(){
 //  console.log(this.farm.totalCrop());
 //  this.farm.totalCrop()
-  var total = this.farm.totalCrops();
-  return total
+  return this.farm.totalCrops();
 }
 
 Farmer.prototype.waterCrops = function(){
@@ -127,41 +143,71 @@ Farmer.prototype.collectHarvest = function(){
 //  ben.basket.push(ben.farm.yieldBounty());
 //  console.log(ben.farm.yieldBounty());
 //  };
-  var basket = ben.farm.yieldBounty();
-  return basket;
+  return ben.farm.yieldBounty();
 }
 //
 //-----------------efficient prototyping-----------------//
 //-----------------efficient prototyping-----------------//
-Farmer.prototype = {
-  buyFarm: function(kind){
-    var newFarm  = new Farm(kind);
-    this.farm = (newFarm);
-  },
-  
-  plant: function(plant,kind,number){
-    
-    for(var i = 0;i < number;i++){
-      var newCrop = plant;
-      newCrop.kind = kind;
-      this.farm.add(newCrop);
-    };
-  },
+// Farmer.prototype = {
+//   buyFarm: function(kind){
+//     this.farm = new Farm(kind);
+//   },
 
-  countCrop: function(){
-    var total = this.farm.totalCrops();
-    return total
-  },
+//   plant: function(plant,number){
 
-  waterCrops: function(){
-    this.farm.grow();
-  },
+//     for(var i = 0;i < number;i++){
+//       this.farm.add(plant);
+//     };
+//   },
 
-  collectHarvest: function(){
-    var basket = ben.farm.yieldBounty();
-    return basket;
-  }
-}
+//   countCrop: function(){
+//     return this.farm.totalCrops();
+//   },
+
+//   waterCrops: function(){
+//     this.farm.grow();
+//   },
+
+//   collectHarvest: function(){
+//     return ben.farm.yieldBounty();
+//   }
+// }
+
+//----------Oject Literal Farmer---------------//
+
+// var Farmer  = {
+//   init: function(kind){
+//     this.kind = kind;
+//     this.template = '<div class = "' + this.kind + '">' + this.kind + ' Farm</div>'
+//   },
+//   buyFarm: function(){
+//     this.farm = Farm;
+//     console.log(this.farm);
+//   },
+
+//   plant: function(plant,kind,number){
+
+//     for(var i = 0;i < number;i++){
+//       var newCrop = plant;
+//       newCrop.kind = kind;
+//       this.farm.add(newCrop);
+//     };
+//   },
+
+//   countCrop: function(){
+//     var total = this.farm.totalCrops();
+//     return total
+//   },
+
+//   waterCrops: function(){
+//     this.farm.grow();
+//   },
+
+//   collectHarvest: function(){
+//     var basket = ben.farm.yieldBounty();
+//     return basket;
+//   }
+// }
 
 
 //-----------------controllers-----------------//
@@ -170,15 +216,15 @@ var ben = new Farmer("Ben")
 ben.buyFarm("Grove");
 bensFarm = ben.farm;
 //  console.log(bensFarm.kind);
-ben.plant(new FruitTree, "orange", 3);
+ben.plant(new orangeTree, 3);
 //  console.log(bensFarm.crops);
 //  console.log(ben.farm.crops);
 //  bensNewFarm = ben.farm;
 //  console.log("total crop");
 console.log(ben.countCrop() === 3);
-ben.plant(new FruitTree, "apple", 4);
+ben.plant(new appleTree, 4);
 console.log(ben.countCrop() === 7);
-ben.plant(new FruitTree, "pear", 4);
+ben.plant(new pearTree, 4);
 console.log(ben.countCrop() === 11);
 //  for(var i = 0; i < 10; i++) {
 ben.waterCrops();
@@ -187,12 +233,12 @@ ben.waterCrops();
 var harvest = {
   bounty: ben.collectHarvest(),
   bountyType: function(){
-    
+
   },
 };
-console.log(harvest.bounty) === console.log(["orange", "orange", "orange", "apple", "apple", "apple", "apple", "pear", "pear", "pear", "pear"]);
-//  };
+console.log(harvest.bounty.toString() === ["orange", "orange", "orange", "apple", "apple", "apple", "apple", "pear", "pear", "pear", "pear"].toString());
 
+console.log(harvest)
 
 
 //   console.log(farmer.harvestSize() === farmer.totalCrops());
