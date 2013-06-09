@@ -27,5 +27,5 @@ ben.waterCrops();
 var harvest = {
   bounty: ben.collectHarvest(),
 };
-console.log(harvest.bounty) === console.log(["orange", "orange", "orange", "apple", "apple", "apple", "apple", "pear", "pear", "pear", "pear"]);
-//to undertand why I am console logging them both, here is a good discussion on equality in javascript http://stackoverflow.com/questions/7314635/why-isnt-1-2-3-equal-to-itself-in-javascript
+console.log(harvest);`
+console.log(harvest.bounty.toString() === ["orange", "orange", "orange", "apple", "apple", "apple", "apple", "pear", "pear", "pear", "pear"].toString());
