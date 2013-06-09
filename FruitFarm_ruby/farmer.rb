@@ -1,8 +1,5 @@
-require_relative 'grove'
-require_relative 'fruit_trees'
-require_relative 'basket'
-
 class Farmer
+  attr_reader :harvest, :harvest_variety, :harvest_classes
   def initialize
     @basket = Basket.new
   end
@@ -15,17 +12,16 @@ class Farmer
     seeds.times {@farm.crop << klass.new}
   end
 
-  def count_crop
+  def total_crop
     @farm.crop.count
   end
 
-  def tend_crop
-    # p "tending mah crops"
-    @farm.crop.each{|plant| plant.age!}
+  def crop_type
+    @farm.crop_type
   end
 
-  def unload
-    @contents.shift(@contents.length)
+  def tend_crop
+    @farm.tend
   end
 
   def collect_harvest
@@ -37,23 +33,24 @@ class Farmer
     # p "what you can do on your farm"
     # p @farm.methods
     # p "your farm's crop"
-    # p @farm.crop.first
+    # ap @farm.crop
     # p "And does crop work for a normal tree?"
     # p (AppleTree.new).crop
     # @basket.collect(@farm.crop)
-    @farm.crop.each { |harvest| @basket.collect(harvest)  }
+    @farm.crop.each { |harvest| @basket.collect(harvest.fruit)  }
+    @harvest = @basket.contents.flatten
+    # p "MAH HARVEST"
+    # ap harvest
+    inventory_harvest_type
+  end
+
+  def inventory_harvest_type
+    @harvest_variety = harvest.map{|crop| crop.class}.uniq
+    @harvest_classes = harvest.map{|crop| crop.class}
+  end
+
+  def count_harvested_crop(klass)
+    @harvest_classes.count(klass)
   end
 end
 
-
-ben = Farmer.new
-ben.buy_farm(Grove)
-ben.plant(OrangeTree, 1)
-p ben.count_crop == 1
-ben.plant(AppleTree, 1)
-p ben.count_crop == 2
-ben.plant(PearTree, 1)
-p ben.count_crop == 3
-10.times { ben.tend_crop }
-harvest = ben.collect_harvest
-harvest.each{ |type| puts "You harvested #{type.fruit.length.to_s + ' ' + type.fruit.first.name}." }

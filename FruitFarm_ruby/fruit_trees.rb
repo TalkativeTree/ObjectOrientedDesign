@@ -21,6 +21,14 @@ class Tree
     @stage = STAGES[@rings] || "mature"
   end
 
+  def age!
+    fruit_spoils
+    tree_grows
+    if status == "healthy" && @stage == "mature"
+      @fruit.<<(self.fruit_class.new)
+    else
+  end
+
   def check_age
     if tree.status = "dead"
       return @rings
@@ -29,14 +37,6 @@ class Tree
     end
   end
 
-  def age!
-    fruit_spoils
-    tree_grows
-    if status == "healthy" && @stage == "mature"
-      # p "I should be produc'n frust"
-      @fruit.<<(self.fruit_class.new)
-    else
-    end
   end
 
   def fruit_spoils
