@@ -62,7 +62,7 @@ function Grove (){
 }
 */
 
-Grove.prototype = new Farm();
+//Grove.prototype = new Farm();
 
 //-----------------Farm-------------------//
 //-----------------Farm-------------------//
