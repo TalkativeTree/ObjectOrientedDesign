@@ -84,10 +84,6 @@ var ItemRenderer = {
               }
 };
 
-// function render(){
-//   this.
-// }
-
 function NewEventForm(){
     var myEvent        = new Event();
     var addEventNode   = $('.add_event');
