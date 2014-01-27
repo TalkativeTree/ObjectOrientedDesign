@@ -59,6 +59,6 @@ class CreditCard
   end
 
   def valid?
-    @errors.any?
+    @errors.empty?
   end
 end
