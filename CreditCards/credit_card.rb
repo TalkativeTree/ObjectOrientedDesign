@@ -1,7 +1,6 @@
 class CardNumber < Struct.new(:number, :errors)
 end
 
-
 module CardProcessor
   module_function
 
