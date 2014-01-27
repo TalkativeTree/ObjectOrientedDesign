@@ -15,6 +15,7 @@ module CardProcessor
     errors.compact
   end
 
+  # checks will return nil if valid or error message if invalid
   def check_size(card_number)
     "Incorrect number of digits." if card_number.gsub(/-/,'').length != 16
   end

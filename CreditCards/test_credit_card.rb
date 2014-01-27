@@ -21,20 +21,20 @@ class TestCreditCard < MiniTest::Test
     CARDS.each{ |number| assert_equal number, CreditCard.new(number).number }
   end
 
-  def test_card_creationg_with_valid_numbers
+  def test_card_creation_with_valid_numbers
     CARDS.each{ |number| assert CreditCard.new(number).valid? }
   end
 
   def test_invalid_length
-    assert CreditCard.new(@invalid_length).valid?
+    refute CreditCard.new(@invalid_length).valid?
   end
 
   def test_invalid_format_with_letters
-    assert CreditCard.new(@invalid_format_letters).valid?
+    refute CreditCard.new(@invalid_format_letters).valid?
   end
 
   def test_invalid_format_with_all_numbers
-    assert CreditCard.new(@invalid_format_numbers).valid?
+    refute CreditCard.new(@invalid_format_numbers).valid?
   end
 end
 
@@ -68,7 +68,6 @@ describe "TestCardProcessor" do
     end
 
     it "should return a CardNumber with errors when given invalid numbers" do
-        # puts "@invalid_format_numbers #{@invalid_format_numbers}"
       assert CardProcessor.validate(@invalid_length).errors.any?
       assert CardProcessor.validate(@invalid_format_letters).errors.any?
       assert CardProcessor.validate(@invalid_format_numbers).errors.any?
